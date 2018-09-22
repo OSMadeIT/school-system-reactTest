@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-class Student extends Component {
+class Result extends Component {
   constructor(props) {
     super(props);
-    this.state = { students: [] };
+    this.state = { results: [] };
   }
 
   render() {
@@ -15,15 +15,19 @@ class Student extends Component {
             <tr>
               <th scope="col">#</th>
               <th scope="col">Student Name</th>
-              <th scope="col">Admission Number</th>
+              <th scope="col">Exam Name</th>
+              <th scope="col">Total Mark</th>
             </tr>
           </thead>
           <tbody>
-            {this.state.students.map(student => (
-              <tr key={student.id}>
-                <td>{student.id}</td>
-                <td>{student.firstName + " " + student.lastName}</td>
-                <td>{student.regNo}</td>
+            {this.state.results.map(result => (
+              <tr key={result.id}>
+                <td>{result.id}</td>
+                <td>
+                  {result.studentId.firstName + " " + result.studentId.lastName}
+                </td>
+                <td>{result.examId.name}</td>
+                <td>{result.totalMark}</td>
               </tr>
             ))}
           </tbody>
@@ -34,9 +38,9 @@ class Student extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:8080/angular-school-test/api/students/list")
+      .get("http://localhost:8080/angular-school-test/api/results/list")
       .then(response => {
-        this.setState({ students: response.data });
+        this.setState({ results: response.data });
       })
       .catch(function(error) {
         console.log(error);
@@ -44,4 +48,4 @@ class Student extends Component {
   }
 }
 
-export default Student;
+export default Result;
