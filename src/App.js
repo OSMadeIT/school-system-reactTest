@@ -14,8 +14,8 @@ class App extends Component {
             Students <span className="badge badge-pill badge-secondary" />
           </a>
         </nav>
-        {/* <Student /> */}
-        <Exam />
+        <Student />
+        {/* <Exam /> */}
         <Result />
       </React.Fragment>
     );

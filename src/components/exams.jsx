@@ -4,23 +4,23 @@ import axios from "axios";
 class Exam extends Component {
   constructor(props) {
     super(props);
-    this.state = { exams: [], name: "" };
+    this.state = { exams: [], examName: "" };
   }
 
   handleChange = event => {
-    this.setState({ name: event.target.value });
+    this.setState({ examName: event.target.value });
   };
 
   handleSubmit = event => {
     event.preventDefault();
 
     // const exam = {
-    //   name: this.state.name
+    //   examName: this.state.examName
     // };
 
     axios
       .post("http://localhost:8080/angular-school-test/api/exams/create", {
-        name: this.state.name
+        name: this.state.examName
       })
       .then(res => {
         console.log(res);
@@ -42,7 +42,7 @@ class Exam extends Component {
             />
           </label>
           <button className="btn btn-secondary" type="submit">
-            Add
+            Save
           </button>
         </form>
         <h3>Exams Types</h3>
