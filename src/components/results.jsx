@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import XLSX from "xlsx";
 
 class Result extends Component {
   constructor(props) {
