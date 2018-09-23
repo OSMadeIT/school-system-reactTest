@@ -10,6 +10,7 @@ class Result extends Component {
   render() {
     return (
       <div className="container">
+        <h3>Exam Resuts</h3>
         <table className="table table-bordered">
           <thead>
             <tr>

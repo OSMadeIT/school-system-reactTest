@@ -10,6 +10,7 @@ class Student extends Component {
   render() {
     return (
       <div className="container">
+        <h3>List of Students</h3>
         <table className="table table-bordered">
           <thead>
             <tr>
