@@ -8,7 +8,6 @@ class Exam extends Component {
     this.state = {
       exams: [],
       examName: "",
-      // examBody:{},
       data: [] /* Array of Arrays e.g. [["a","b"],[1,2]] */,
       cols: [] /* Array of column objects e.g. { name: "C", K: 2 } */
     };
@@ -28,29 +27,31 @@ class Exam extends Component {
       const wsname = wb.SheetNames[0];
       const ws = wb.Sheets[wsname];
       /* Convert array of arrays */
+      const name = ["name"];
       const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
-      const postData = XLSX.utils.sheet_to_json(ws, { header: "name" });
-      console.log(postData);
+      const postData = XLSX.utils.sheet_to_json(ws, { header: name });
+      // console.log(postData);
       const saveBtn = this.saveBtn.current;
       saveBtn.addEventListener("click", () => {
         console.log("Clicked");
         // send data to db
         for (let i = 0; i < postData.length; i++) {
           if (i !== 0) {
-            this.examBody = {
-              name: this.postData[i].name
+            const examBody = {
+              name: postData[i].name
             };
+
+            console.log(examBody);
+            axios
+              .post(
+                "http://localhost:8080/angular-school-test/api/exams/create",
+                examBody
+              )
+              .then(res => {
+                console.log(res);
+                console.log(res.data);
+              });
           }
-          console.log(this.examBody);
-          axios
-            .post(
-              "http://localhost:8080/angular-school-test/api/exams/create",
-              this.examBody
-            )
-            .then(res => {
-              console.log(res);
-              console.log(res.data);
-            });
         }
       });
       /* Update state */
@@ -209,7 +210,7 @@ class DataInput extends React.Component {
           <div className="col">
             <h5>
               <a
-                href="http://localhost:8080/angular-school-test/api/excel/get"
+                href="http://localhost:8080/angular-school-test/api/exams/download"
                 download
               >
                 Download
