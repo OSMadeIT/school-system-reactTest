@@ -34,7 +34,6 @@ class Student extends Component {
     if (rABS) reader.readAsBinaryString(file);
     else reader.readAsArrayBuffer(file);
   }
-  s;
 
   handleRegChange = event => {
     this.setState({
@@ -200,24 +199,30 @@ class DataInput extends React.Component {
   render() {
     return (
       <form className="form-inline">
-        <h5>
-          <a
-            href="http://localhost:8080/angular-school-test/api/excel/get"
-            download
-          >
-            Download
-          </a>{" "}
-          New Student Spreadsheet
-        </h5>
-        <div className="form-group">
-          <label htmlFor="file">Spreadsheet</label>
-          <input
-            type="file"
-            className="form-control"
-            id="file"
-            accept={SheetJSFT}
-            onChange={this.handleChange}
-          />
+        <div className="row">
+          <div className="col">
+            <h5>
+              <a
+                href="http://localhost:8080/angular-school-test/api/excel/get"
+                download
+              >
+                Download
+              </a>{" "}
+              New Student Spreadsheet
+            </h5>
+            <div className="col">
+              <div className="form-group">
+                <label htmlFor="file">Upload Students File</label>
+                <input
+                  type="file"
+                  className="form-control"
+                  id="file"
+                  accept={SheetJSFT}
+                  onChange={this.handleChange}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </form>
     );

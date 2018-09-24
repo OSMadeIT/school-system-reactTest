@@ -12,7 +12,7 @@ class App extends Component {
       <React.Fragment>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <a className="navbar-brand" href="#">
-            Navbar
+            React
           </a>
           <button
             className="navbar-toggler"
