@@ -1,34 +1,32 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
-import Highcharts from "highcharts";
-import HighchartsReact from "highcharts";
+import Chart from "./charts";
 import axios from "axios";
 
-const options = {
-  title: {
-    text: "My stock chart"
-  },
+// const options = {
+//   title: {
+//     text: "My stock chart"
+//   },
 
-  series: [
-    {
-      data: [
-        [Date.UTC(2013, 5, 2), 0.7695],
-        [Date.UTC(2013, 5, 3), 0.7648],
-        ...[Date.UTC(2013, 5, 24), 0.7623]
-      ]
-    }
-  ]
-};
+//   series: [
+//     {
+//       data: [
+//         [Date.UTC(2013, 5, 2), 0.7695],
+//         [Date.UTC(2013, 5, 3), 0.7648],
+//         ...[Date.UTC(2013, 5, 24), 0.7623]
+//       ]
+//     }
+//   ]
+// };
 
-const App = () => (
-  <div>
-    <HighchartsReact
-      highcharts={Highcharts}
-      constructorType={"stockChart"}
-      options={options}
-    />
-  </div>
-);
+// const App = () => (
+//   <div>
+//     <HighchartsReact
+//       highcharts={Highcharts}
+//       constructorType={"stockChart"}
+//       options={options}
+//     />
+//   </div>
+// );
 
 class Result extends Component {
   constructor(props) {
@@ -39,6 +37,7 @@ class Result extends Component {
   render() {
     return (
       <div className="container">
+        <Chart />
         <h3>Exam Resuts</h3>
         <table className="table table-bordered">
           <thead>
@@ -62,7 +61,6 @@ class Result extends Component {
             ))}
           </tbody>
         </table>
-        {App}
       </div>
     );
   }
