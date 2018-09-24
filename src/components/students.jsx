@@ -14,6 +14,7 @@ class Student extends Component {
       regNo: ""
     };
     this.handleFile = this.handleFile.bind(this);
+    this.saveBtn = React.createRef();
   }
   handleFile(file /*:File*/) {
     /* Boilerplate to set up FileReader */
@@ -27,7 +28,35 @@ class Student extends Component {
       const wsname = wb.SheetNames[0];
       const ws = wb.Sheets[wsname];
       /* Convert array of arrays */
+      const name = ["firstName", "lastName", "regNo"];
       const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+      const postData = XLSX.utils.sheet_to_json(ws, { header: name });
+      // console.log(postData);
+      const saveBtn = this.saveBtn.current;
+      saveBtn.addEventListener("click", () => {
+        console.log("Clicked");
+        // send data to db
+        for (let i = 0; i < postData.length; i++) {
+          if (i !== 0) {
+            const studentBody = {
+              firstName: postData[i].firstName,
+              lastName: postData[i].lastName,
+              regNo: postData[i].regNo
+            };
+
+            console.log(studentBody);
+            axios
+              .post(
+                "http://localhost:8080/angular-school-test/api/students/create",
+                studentBody
+              )
+              .then(res => {
+                console.log(res);
+                console.log(res.data);
+              });
+          }
+        }
+      });
       /* Update state */
       this.setState({ data: data, cols: make_cols(ws["!ref"]) });
     };
@@ -84,6 +113,9 @@ class Student extends Component {
             </div>
           </div>
         </DragDropFile>
+        <button className="btn btn-secondary" type="submit" ref={this.saveBtn}>
+          Save Excel
+        </button>
         <form onSubmit={this.handleSubmit}>
           <label>First Name</label>
           <input
