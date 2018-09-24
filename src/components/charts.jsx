@@ -10,6 +10,9 @@ class Chart extends Component {
       title: {
         text: "Results Chart"
       },
+      xAxis: {
+        categories: ["Agr", "Eng", "Math", "Bio", "Chem", "Phyc", "Comp", "Geo"]
+      },
       series: [
         {
           data: []

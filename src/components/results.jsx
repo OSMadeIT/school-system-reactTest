@@ -1,33 +1,6 @@
 import React, { Component } from "react";
 import Chart from "./charts";
 import axios from "axios";
-
-// const options = {
-//   title: {
-//     text: "My stock chart"
-//   },
-
-//   series: [
-//     {
-//       data: [
-//         [Date.UTC(2013, 5, 2), 0.7695],
-//         [Date.UTC(2013, 5, 3), 0.7648],
-//         ...[Date.UTC(2013, 5, 24), 0.7623]
-//       ]
-//     }
-//   ]
-// };
-
-// const App = () => (
-//   <div>
-//     <HighchartsReact
-//       highcharts={Highcharts}
-//       constructorType={"stockChart"}
-//       options={options}
-//     />
-//   </div>
-// );
-
 class Result extends Component {
   constructor(props) {
     super(props);
@@ -37,30 +10,38 @@ class Result extends Component {
   render() {
     return (
       <div className="container">
-        <Chart />
-        <h3>Exam Resuts</h3>
-        <table className="table table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Student Name</th>
-              <th scope="col">Exam Name</th>
-              <th scope="col">Total Mark</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.results.map(result => (
-              <tr key={result.id}>
-                <td>{result.id}</td>
-                <td>
-                  {result.studentId.firstName + " " + result.studentId.lastName}
-                </td>
-                <td>{result.examId.name}</td>
-                <td>{result.totalMark}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="row">
+          <div className="col">
+            <h3>Exam Resuts</h3>
+            <table className="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Student Name</th>
+                  <th scope="col">Exam Name</th>
+                  <th scope="col">Total Mark</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.results.map(result => (
+                  <tr key={result.id}>
+                    <td>{result.id}</td>
+                    <td>
+                      {result.studentId.firstName +
+                        " " +
+                        result.studentId.lastName}
+                    </td>
+                    <td>{result.examId.name}</td>
+                    <td>{result.totalMark}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <div className="col">
+            <Chart />
+          </div>
+        </div>
       </div>
     );
   }
