@@ -268,9 +268,6 @@ class DataInput extends React.Component {
     cols:Array<{name:string, key:number|string}>;
 */
 class OutTable extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div className="table-responsive">
