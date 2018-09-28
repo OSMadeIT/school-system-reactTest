@@ -4,7 +4,7 @@ import "./App.css";
 import Student from "./components/students";
 import Exam from "./components/exams";
 import Result from "./components/results";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 class App extends Component {
   render() {
